@@ -1,0 +1,355 @@
+<html>
+
+<head>
+    <title>Website bán đồ chơi</title>
+    <link rel="stylesheet" type="text/css" href="bandc.css" />
+    <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.min.css">
+    <link rel="stylesheet" href="bandc1.css">
+    <script src="bandc.js"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <script>
+        $(document).ready(function() {
+
+            $(".bnt-addToCart").click(function() {
+                var cartAmount = Number(sessionStorage.getItem("cartAmount"));
+                //alert(cartAmount);
+                if (cartAmount != null)
+                    cartAmount += 1;
+                else
+                    cartAmount = 1;
+
+                $("#cart-amount").text("Giỏ hàng (" + cartAmount + ")");
+                sessionStorage.setItem("cartAmount", cartAmount)
+
+                var pImg = $(this).parent().parent().find(".p-img").attr("src");
+                var pName = $(this).parent().parent().find(".p-name").text();
+                var pPrice = $(this).parent().parent().find(".sale-price").text();
+                var product = {
+                    "img": pImg,
+                    "name": pName,
+                    "price": pPrice
+                };
+
+                //alert(pImg + " " + pName + " " + pPrice);
+                var cart = sessionStorage.getItem("cart");
+                var cartProduct = "";
+                if (cart != null) {
+                    cartProduct = cart + "," + JSON.stringify(product);
+                } else
+                    cartProduct = JSON.stringify(product);
+                sessionStorage.setItem("cart", cartProduct);
+                //alert(cartProduct);
+            })
+
+        })
+    </script>
+    <style>
+        ul {
+            list-style: none;
+            margin: 0px;
+        }
+        
+        .menu-item {
+            /* float: left; */
+            /* padding: 10px 10px; */
+            cursor: pointer;
+        }
+        
+        .selected-item {
+            background-color: #00bfff;
+        }
+        
+        ul ul {
+            display: none;
+            background-color: #00bfff;
+        }
+    </style>
+
+    <script>
+        1
+        $(document).ready(function() {
+            $(".menu-item").click(function() {
+                $(".menu-item").removeClass("selected-item");
+                $(this).addClass("selected-item");
+                $(".menu-item ul").hide();
+            });
+
+
+            $(".menu-item").click(function() {
+                $(".menu-item").removeClass("selected-item");
+                $(this).addClass("selected-item");
+                $(this).children().slideToggle();
+                $(".menu-item ul ul").show();
+                // $(this).toggleClass("selected-item");
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <div id="header">
+        <div id="top-line">
+            <div class="wrapper">
+                <span id="hotline"><i class="fa-solid fa-phone"></i> Hotline: <b> 0336664012</b></span>
+                <span id="address"><b>Địa chỉ</b>: Số 1 Yên Tập, Nhân Hòa, Mỹ Hào, Hưng Yên</span>
+                <span id="ship"><b>FREE SHIP</b>: đơn hàng trên 500.000đ hoặc bán kính 5km</span>
+            </div>
+        </div>
+        <div id="banner">
+            <div class="wrapper">
+                <div id="logo">
+                    <a href="bandc.html"><img src="logo11.webp" alt="#"></a>
+                </div>
+                <div id="search">
+                    <form>
+                        <input type="text" name="search" placeholder="Tìm kiếm sản phẩm...">
+                    </form>
+                </div>
+                <div id="login">
+                    <span><i style="padding: 10px;color: #fff;font-size: 30px;" class="fa-solid fa-user"></i><a href="login1.html"><b>Tài Khoản</b><br></a>
+                        <span><a href="#">Đăng nhập</a> / <a href="#">Đăng ký</a></span>
+                    </span>
+                </div>
+                <div id="cart">
+                    <span><i style="padding: 10px;" class="fa-solid fa-cart-shopping"></i><a href="cart.html"> Giỏ Hàng</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <div class="wrapper">
+            <div class="row">
+                <div id="menu-left">
+                    <div class="cate-title">
+                        DANH MỤC
+                    </div>
+                    <ul>
+                        <li class="menu-item">
+                            <img src="boy.webp" alt="#"> Đồ chơi bé trai
+                            <ul>
+                                <li><a href="#">Siêu nhân & Robot</a></li>
+                                <li><a href="#">Đồ chơi lắp ráp</a></li>
+                                <li><a href="#">Bộ dụng cụ & đóng vai (lego)</a></li>
+                                <li><a href="#">Xe mô hình và điều khiển</a></li>
+                                <li><a href="#">Đồ chơi vận động</a></li>
+                                <li><a href="#">Thế giới động vật</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item"><img src="girl.webp" alt="#">Đồ chơi bé gái
+                            <ul>
+                                <li><a href="#">Búp bê và thú cưng</a></li>
+                                <li><a href="#">Đất nặn và khéo tay hay làm</a></li>
+                                <li><a href="#">Đồ chơi bếp và đóng vai</a></li>
+                                <li><a href="#">Thú bông</a></li>
+                                <li><a href="#">Đồ chơi vận động</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item">
+                            <img src="baby.webp" alt="#"> Mẫu giáo và bé sơ sinh
+                            <ul>
+                                <li><a href="#">Đồ chơi vận động</a></li>
+                                <li><a href="#">Đồ chơi giáo dục</a></li>
+                                <li><a href="#">Đồ chơi gỗ</a></li>
+                                <li><a href="#">Đồ dùng sơ sinh</a></li>
+                                <li><a href="#">Đồ chơi sơ sinh mẫu giáo</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item">
+                            <img src="balo.webp" alt="#"> Mẫu giáo và bé sơ sinh
+                            <ul>
+                                <li><a href="#">Đồ dùng học tập</a></li>
+                                <li><a href="#">Đồ dùng thể thao</a></li>
+                                <li><a href="#">Đồ dùng ăn uống</a></li>
+                                <li><a href="#">Chăm sóc cá nhân</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu_item">
+                            <a href="#listbook1"> COMBO HOT </a>
+                        </li>
+                        <li class="menu_item">
+                            <a href="#listbook2"> Ưu đãi SHOCK</a>
+                        </li>
+                        <li class="menu_item">
+                            <a href="#listbook3"> Bé vui an toàn</a>
+                        </li>
+                        <li class="menu_item">
+                            <a href="#listbook"> Thương hiệu</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div id="slideshow" style="background-color: #fff;">
+                    <div style="height:50px;border: 2px solid #00bfff;">
+                        <h3 style="margin-left: 20px;height: 20px;"><span><a href="bandc.html" style="text-decoration: none;color: #00bfff;">
+                            <i class="fa-solid fa-house-chimney"></i> Trang chủ > </a></span>
+                            <a href="#" style="text-decoration:none;">Siêu nhân & Robot </a>
+                        </h3>
+                    </div>
+                    <img style="height: 350px;width: 798px;" id="slider" src="slrobot.webp" alt="new">
+                </div>
+                <div style="clear: both"></div>
+                <div class="col-3 col-s-4 product">
+                    <div class="p-items">
+                        <img class="p-img" src="cb8.png" />
+                        <a class="p-name" href="#">Đồ chơi lắp ráp 759 mảnh</a>
+                        <span class="sale-price">780.000đ</span>
+                        <!-- <span class="old-price"><s>99.000đ</s></span> -->
+                        <input class="bnt-addToCart" type="button" value="Chọn mua" onclick="alert('Thêm vào giỏ hàng thành công')">
+                        <a href="chitiet.html"> <input class="btn-details" type="button" value="Chi tiết"></a>
+                    </div>
+                </div>
+                <div class="col-3 col-s-4 product">
+                    <div class="p-items">
+                        <img class="p-img" src="cb1.webp" />
+                        <a class="p-name" href="#">Xe Mô Hình MAJORETTE</a>
+                        <span class="sale-price">66.000đ</span>
+                        <!-- <span class="old-price"><s>99.000đ</s></span> -->
+
+                        <!-- <div style="width: 100%;text-align: center;margin: 15px 0px;height: 60px;"> -->
+                        <input class="bnt-addToCart" type="button" value="Chọn mua">
+                        <input class="btn-details" type="button" value="Chi tiết">
+                        <!-- </div> -->
+                    </div>
+                </div>
+                <div class="col-3 col-s-4 product">
+                    <div class="p-items">
+                        <img class="p-img" src="cb2.webp" />
+                        <a class="p-name" href="#">Bánh Xe Mô Hình MAJORETTE</a>
+                        <span class="sale-price">109.000đ</span>
+                        <!-- <span class="old-price"><s>99.000đ</s></span> -->
+                        <input class="bnt-addToCart" type="button" value="Chọn mua">
+                        <input class="btn-details" type="button" value="Chi tiết">
+                    </div>
+                </div>
+                <div class="col-3 col-s-4 product">
+                    <div class="p-items">
+                        <img class="p-img" src="cb3.webp" />
+                        <a class="p-name" href="#">Bộ đồ chơi búp bê hướng nghiệp</a>
+                        <span class="sale-price">180.000đ</span>
+                        <!-- <span class="old-price"><s>99.000</s></span> -->
+                        <input class="bnt-addToCart" type="button" value="Chọn mua">
+                        <input class="btn-details" type="button" value="Chi tiết">
+                    </div>
+                </div>
+                <div class="col-3 col-s-4 product">
+                    <div class="p-items">
+                        <img class="p-img" src="cb4.webp" />
+                        <a class="p-name" href="#">Bộ đồ chơi búp bê thời trang dạ hội</a>
+                        <span class="sale-price">280.000đ</span>
+                        <!-- <span class="old-price"><s>99.000đ</s></span> -->
+                        <input class="bnt-addToCart" type="button" value="Chọn mua">
+                        <input class="btn-details" type="button" value="Chi tiết">
+                    </div>
+                </div>
+                <div class="col-3 col-s-4 product">
+                    <div class="p-items">
+                        <span class="p-sale">COMBO</span>
+                        <img class="p-img" src="cb5.png" />
+                        <a class="p-name" href="#">Bộ đồ chơi búp bê thời trang nam</a>
+                        <span class="sale-price">100.000đ</span>
+                        <!-- <span class="old-price"><s>99.000đ</s></span> -->
+                        <input class="bnt-addToCart" type="button" value="Chọn mua">
+                        <input class="btn-details" type="button" value="Chi tiết">
+                    </div>
+                </div>
+                <div class="col-3 col-s-4 product">
+                    <div class="p-items">
+                        <span class="p-sale">COMBO</span>
+                        <img class="p-img" src="cb6.webp" />
+                        <a class="p-name" href="#">Đô chơi chiến sĩ dũng mãnh Zuru</a>
+                        <span class="sale-price">400.000đ</span>
+                        <!-- <span class="old-price"><s>99.000đ</s></span> -->
+                        <input class="bnt-addToCart" type="button" value="Chọn mua">
+                        <input class="btn-details" type="button" value="Chi tiết">
+                    </div>
+                </div>
+                <div class="col-3 col-s-4 product">
+                    <div class="p-items">
+                        <span class="p-sale">COMBO</span>
+                        <img class="p-img" src="cb7.webp" />
+                        <a class="p-name" href="#">Đồ chơi lắp ráp 100+ mảnh</a>
+                        <span class="sale-price">380.000đ</span>
+                        <!-- <span class="old-price"><s>99.000</s></span> -->
+                        <input class="bnt-addToCart" type="button" value="Chọn mua">
+                        <input class="btn-details" type="button" value="Chi tiết">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div style="clear: both"></div>
+    <div class="cate-top" style="margin-left: 40px;">
+        <div class="cate-title title-left"><a name="listbook">Thương hiệu</a></div>
+    </div>
+    <div style="clear: both"></div>
+    <div id="trademark">
+        <div class="logo">
+            <img src="lego.png" alt="#">
+            <img src="playmobil.png" alt="#">
+            <img src="rubik.png" alt="">
+            <img src="playdoh.png" alt="#">
+            <img src="tosy.png" alt="#">
+            <img src="leapfrog.png" alt="#">
+            <img src="kskids.png" alt="#">
+            <img src="barbie.png" alt="#">
+            <img src="pony1.png" alt="#">
+        </div>
+    </div>
+    <div style="clear: both"></div>
+    <div id="footer">
+        <div id="footer-left">
+            <h2>Địa chỉ</h2>
+            <span>268 Yên Tập, Nhân Hòa, Hưng Yên, Vietnam</span>
+            <h2>Liên hệ</h2>
+            <span><h3>HOTLINE chăm sóc khách hàng : </h3> 0336664012</span><br>
+            <span>Từ thứ Hai đến thứ Bảy (08:00 - 17:00)
+            <br> Chủ nhật (08:00 - 12:00)</span>
+            <br>
+            <span><h3>Email :</h3>hoanga5dqh@gmail.com</span>
+        </div>
+        <div id="footer-between">
+            <h2>Đều khoản và chính sách</h2>
+            <span><a href="#"><h4>- Chính sách giao hàng</h4></a></span>
+            <span><a href="#"><h4>- Chính sách tích lũy điểm</h4></a></span>
+            <span><a href="#"><h4>- Điều khoản và dịch vụ</h4></a></span>
+        </div>
+        <div id="footer-right">
+            <h2>Hỗ trợ khách hàng</h2>
+            <span><a href="#"><h4>- Chính sách bảo mật</h4></a></span>
+            <span><a href="#"><h4>- Chính sách đổi trả hàng hóa</h4></a></span>
+            <span><a href="#"><h4>- Chính sách thanh toán</h4></a></span>
+        </div>
+        <div id="footer-right-2">
+            <h3>Cảm ơn bạn đã luôn tin tưởng và đồng hành cùng children's toy STORE</h3>
+            <img src="logo.png#" alt="">
+        </div>
+        <div id="footer-map">
+            <h3 style="float:left;margin-right: 20px;">Vị trí shop:</h3>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7452.163789643958!2d106.05493062159786!3d20.94922611383093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135a479723df9f7%3A0x8144812ad46d49dd!2zWcOqbiBU4bqtcCwgTmjDom4gSMOyYSwgTeG7uSBIw6BvLCBIxrBuZyBZw6puLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1650813264013!5m2!1svi!2s"
+                width="300" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div id="bottom-line">
+            <div>
+                <span><b>© Bản quyền thuộc về N.V.Hoàng | <a href="# " >Powered by HOANG</a></b></span>
+            </div>
+        </div>
+    </div>
+    <div id="contact">
+        <div class="messenger">
+            <a href="#"><i  class="fa-brands fa-facebook-messenger"></i></a>
+        </div>
+        <div class="zalo">
+            <a href="#"><img src="zalo.png" alt=""></a>
+        </div>
+        <div class="mail">
+            <a href="#"><img src="mail.png" alt="#"></a>
+        </div>
+
+    </div>
+</body>
+
+</html>
